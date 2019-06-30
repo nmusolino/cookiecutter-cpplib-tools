@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e3c3f5ad0965e06aa9e3d35da601c6ad9fd3a4be6487b8e6d8d642dc6657cb24"
+            "sha256": "a0732de8e43cbd68599f2e7573d5c33272e9d1d38a41c43c86c663aff20498b6"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -63,6 +63,20 @@
                 "sha256:5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7"
             ],
             "version": "==7.0"
+        },
+        "cmake": {
+            "hashes": [
+                "sha256:2966094184e8474e078ec3750d333e99e763b1e53adef35ff4193dd53918ad5d",
+                "sha256:5fae5c883ceaa31c3d85516af8a1fd4f1491c18dcec28fe4912ce8e4e7f55abb",
+                "sha256:b78b3d4b0b221d899b53e8194b95686b3827662f3b43c7fb0ed1c8118bb04544",
+                "sha256:c9dc7fb166f4a9f6b0b950a21f5c8be2ae5209faa5fa5b01113f6d198f310070",
+                "sha256:d3cf88424c65b460767fb8281df8be7c61585bb9ea2cd71f6aaedacb9ff78fda",
+                "sha256:e359af90aed340ed647812fd66539a3fff058df59902d6e94038a492a4d9c10a",
+                "sha256:ef2ad9aaaca9450fad5820133f6150349778b54d3021775d3060a30c077feb70",
+                "sha256:ff9bc2b44c7b48b7a4ed66aa0b30e1db49d015d37b7a8c2b293dc5465814d599"
+            ],
+            "index": "pypi",
+            "version": "==3.14.4"
         },
         "cookiecutter": {
             "hashes": [

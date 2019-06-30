@@ -1,6 +1,7 @@
 [dev-packages]
 pytest = "*"
 cookiecutter = "*"
+cmake = "*"
 
 [packages]
 
