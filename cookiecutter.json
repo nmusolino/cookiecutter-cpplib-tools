@@ -1,0 +1,9 @@
+{
+    "full_name": "J. Random Author",
+    "email": "jra@example.com",
+    "project_name": "My Project",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "project_short_description": "My sample project containing tests and santitizers.",
+    "license": ["GNU General Public License v3", "BSD license", "MIT license"],
+    "use_boost": ["y", "n"]
+}
