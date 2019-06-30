@@ -2,9 +2,9 @@
 
 #include <string>
 
+namespace {{cookiecutter.cpp_namespace}}
+{
 
-namespace {{cookiecutter.cpp_namespace}} {
+    std::string message(const std::string& recipient);
 
-  std::string message(const std::string& recipient);
-  
-}  /* end namespace '{{cookiecutter.cpp_namespace}}' */
+} /* end namespace '{{cookiecutter.cpp_namespace}}' */
