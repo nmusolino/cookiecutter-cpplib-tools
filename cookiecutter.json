@@ -8,5 +8,5 @@
     "project_short_description": "My sample project containing tests and santitizers.",
     "version": "0.1.0",
     "license": ["GNU General Public License v3", "BSD license", "MIT license"],
-    "use_boost": ["y", "n"]
+    "use_boost": ["yes", "no"]
 }
