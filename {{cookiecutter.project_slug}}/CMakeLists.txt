@@ -7,7 +7,7 @@ project({{cookiecutter.project_slug}}
 set(CMAKE_CXX_STANDARD 17)
 
 
-# LIBRARIES
+## LIBRARIES
 
 # {{cookiecutter.library_name}} library
 add_library({{cookiecutter.library_name}}
@@ -17,3 +17,8 @@ add_library({{cookiecutter.library_name}}
 target_include_directories({{cookiecutter.library_name}}
 			   PUBLIC include)
 	       	
+
+## UNIT TEST SUITE
+enable_testing()
+add_subdirectory(tests)
+

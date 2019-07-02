@@ -65,5 +65,5 @@ def test_build(cookiecutter_renderer, use_boost):
     project_path = cookiecutter_renderer(use_boost=use_boost)
     build_dir = (project_path / "build")
     build_dir.mkdir()
-    cmake_result = subprocess.run(['cmake', '..'], cwd=build_dir, check=True)
-    build_result = subprocess.run(['cmake', '--build', '.'], cwd=build_dir, check=True)
+    for command in ['cmake ..', 'cmake --build .', 'ctest']:
+        subprocess.run(command.split(), cwd=build_dir, check=True)
