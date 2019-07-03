@@ -1,9 +1,11 @@
 # These packages are required to create a new C++ project from the project
 # template in this repository.
+
 [packages]
 cookiecutter = "*"
-
 # These packages are used for testing the template in this repository.
+
 [dev-packages]
 pytest = "*"
 cmake = "*"
+flake8 = "*"

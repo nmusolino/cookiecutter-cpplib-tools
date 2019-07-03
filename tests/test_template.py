@@ -7,7 +7,6 @@ import cookiecutter.main
 import pytest
 
 
-
 def has_build_tools() -> bool:
     return all(shutil.which(program) is not None for program in ['cmake', 'make'])
 
@@ -18,17 +17,15 @@ def template_directory() -> pathlib.Path:
 
 
 def parameterize_by_template_parameter(parameter_name):
-    template = _template()
-    parameter_choices = list(template[parameter_name])
+    choices = _template()[parameter_name]
+    parameters = [pytest.param(value, id='{}={!r}'.format(parameter_name, value))
+                  for value in choices]
+    return pytest.mark.parametrize(parameter_name, parameters)
 
-    return pytest.mark.parametrize(parameter_name,
-                                   [pytest.param(value, id='{}={!r}'.format(parameter_name, value)) for value in
-                                    parameter_choices])
 
 def _template() -> dict:
     with open(template_directory() / "cookiecutter.json") as f:
         return json.load(f)
-
 
 
 @pytest.fixture()

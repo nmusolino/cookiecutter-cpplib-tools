@@ -4,4 +4,6 @@ python:
 install:
   - 'pip install pipenv'
   - 'pipenv sync --dev'
-script: 'pipenv run pytest'
+script:
+  - pipenv run pytest
+  - flake8
