@@ -7,7 +7,13 @@ import cookiecutter.main
 import pytest
 
 
+def count(iterable):
+    """ Return a count of elements in `iterable`. """
+    return sum(1 for _ in iterable)
+
+
 def has_build_tools() -> bool:
+    """ Return whether the system has cmake and make available in PATH. """
     return all(shutil.which(program) is not None for program in ['cmake', 'make'])
 
 
@@ -17,6 +23,8 @@ def template_directory() -> pathlib.Path:
 
 
 def parameterize_by_template_parameter(parameter_name):
+    """ Return a test decorator that parameterizes its arguments over
+    all values of `parameter_name`. """
     choices = _template()[parameter_name]
     parameters = [pytest.param(value, id='{}={!r}'.format(parameter_name, value))
                   for value in choices]
@@ -24,6 +32,7 @@ def parameterize_by_template_parameter(parameter_name):
 
 
 def _template() -> dict:
+    """ Return the cookiecutter template as a dictionary. """
     with open(template_directory() / "cookiecutter.json") as f:
         return json.load(f)
 
@@ -53,7 +62,11 @@ def test_template(cookiecutter_renderer):
 
 @parameterize_by_template_parameter('license')
 def test_license_choices(license, cookiecutter_renderer):
-    cookiecutter_renderer()
+    project_path = cookiecutter_renderer(license=license)
+    license_path = project_path / 'LICENSE'
+    with open(license_path) as license_file:
+        line_count = count(license_file)
+    assert line_count >= 5, "Expected non-empty LICENSE file: {}".format(license_path)
 
 
 @pytest.mark.skipif(not has_build_tools(), reason='Does not have cmake and make')
