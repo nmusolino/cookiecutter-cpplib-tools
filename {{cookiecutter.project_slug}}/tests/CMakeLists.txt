@@ -10,5 +10,7 @@ target_link_libraries({{cookiecutter.library_name}}_tests
 	Catch2::Catch2
 )
 
-add_test(NAME {{cookiecutter.library_name}}_tests
-	 COMMAND {{cookiecutter.library_name}}_tests)
+add_test(
+    NAME {{cookiecutter.library_name}}_tests
+    COMMAND {{cookiecutter.library_name}}_tests
+)
