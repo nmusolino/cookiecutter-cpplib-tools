@@ -11,6 +11,14 @@ set(CMAKE_CXX_STANDARD 17)
 # Register Catch2 unit testing library.
 add_subdirectory(external/Catch2)
 
+# Sanitizers-CMake package. Enable with '-DSANITIZE_UNDEFINED=On' at CMake command line.
+set(CMAKE_MODULE_PATH
+    "${CMAKE_SOURCE_DIR}/external/sanitizers-cmake/cmake" ${CMAKE_MODULE_PATH}
+)
+find_package(Sanitizers)
+
+
+## LIBRARIES
 # {{cookiecutter.library_name}} library
 add_library({{cookiecutter.library_name}}
 	    include/{{cookiecutter.library_name}}/{{cookiecutter.library_name}}.hpp

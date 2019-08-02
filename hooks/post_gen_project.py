@@ -1,4 +1,3 @@
-import functools
 import logging
 import os
 import shlex
@@ -7,9 +6,10 @@ import subprocess
 logger = logging.getLogger(__name__)
 
 SUBMODULE_DIRECTORY = 'external'
-# List of desired submodules, as (name, URL, tag) tuples.
+# List of desired submodules, as (name, URL, commit) tuples.
 SUBMODULE_SPECIFICATIONS = [
-    ('Catch2', 'https://github.com/catchorg/Catch2.git', 'v2.9.1'),
+    ('Catch2', 'https://github.com/catchorg/Catch2.git', 'tags/v2.9.1'),
+    ('sanitizers-cmake', 'https://github.com/arsenm/sanitizers-cmake.git', 'master'),
 ]
 
 def run(*args, cwd=None):
@@ -22,12 +22,12 @@ def init():
     run('git', 'init')
 
 def clone_submodules():
-    for name, url, tag in SUBMODULE_SPECIFICATIONS:
+    for name, url, commit in SUBMODULE_SPECIFICATIONS:
         path = os.path.join(SUBMODULE_DIRECTORY, name)
         run('git', 'submodule', 'add', url, path)
-        run('git', 'checkout', 'tags/{}'.format(tag), cwd=path)
+        run('git', 'checkout', commit, cwd=path)
         run('git', 'add', path)
-        run('git', 'commit', '-m', 'Add {} submodule at tag {}'.format(name, tag))
+        run('git', 'commit', '-m', 'Add {} submodule at {}'.format(name, commit))
 
 if __name__ == '__main__':
     log_level = getattr(logging, os.getenv('COOKIECUTTER_LOG_LEVEL', 'WARNING'))
