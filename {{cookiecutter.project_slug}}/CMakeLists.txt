@@ -8,6 +8,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 
 ## LIBRARIES
+# Register Catch2 unit testing library.
+add_subdirectory(external/Catch2)
 
 # {{cookiecutter.library_name}} library
 add_library({{cookiecutter.library_name}}

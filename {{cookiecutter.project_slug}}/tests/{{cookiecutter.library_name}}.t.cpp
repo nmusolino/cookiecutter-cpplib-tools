@@ -1,20 +1,15 @@
 #include "{{cookiecutter.library_name}}/{{cookiecutter.library_name}}.hpp"
 
-#include <gtest/gtest.h>
-
+#include <catch2/catch.hpp>
 
 namespace {{cookiecutter.cpp_namespace}} {
 namespace testing {
 
-    TEST(MessageTest, EmptyString)
-    {
-        EXPECT_EQ(message(std::string{}), "Hello");
-    }
-
-    TEST(MessageTest, NonemptyString)
-    {
-        EXPECT_EQ(message("World"), "Hello, World");
-    }
+TEST_CASE("message construction", "[message]" )
+{
+    REQUIRE(message(std::string{}) == "Hello");
+    REQUIRE(message("World") == "Hello, World");
+}
 
 } /* end namespace 'testing' */
 } /* end namespace '{{cookiecutter.cpp_namespace}}' */
