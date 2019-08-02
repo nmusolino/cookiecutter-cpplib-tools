@@ -77,3 +77,9 @@ def test_build(cookiecutter_renderer, use_boost):
     build_dir.mkdir()
     for command in ['cmake ..', 'cmake --build .', 'ctest']:
         subprocess.run(command.split(), cwd=build_dir, check=True)
+
+@pytest.mark.skipif(not has_build_tools(), reason='Does not have cmake and make')
+@parameterize_by_template_parameter('use_boost')
+def test_build_with_makefile(cookiecutter_renderer, use_boost):
+    project_path = cookiecutter_renderer(use_boost=use_boost)
+    subprocess.run(['make', 'test'], check=True, cwd=project_path)
