@@ -13,26 +13,37 @@ SUBMODULE_SPECIFICATIONS = [
     ('sanitizers-cmake', 'https://github.com/arsenm/sanitizers-cmake.git', 'master'),
 ]
 
-def run(*args, cwd=None):
-    command_str = ' '.join(shlex.quote(arg) for arg in args)
-    cwd_str = ' \t[cwd: {}]'.format(cwd) if cwd else ''
-    logger.info('Running command:  %s%s', command_str, cwd_str)
-    subprocess.run(args, check=True, cwd=cwd, capture_output=True)
+def run(command, cwd=None, redirect_output=False):
+    cmd_list = shlex.split(command)
+    cwd_str = f' \t[cwd: {cwd}]' if cwd else ''
+    logger.info(f'Running command:  {command}{cwd_str}')
+    process = subprocess.Popen(cmd_list, cwd=cwd, universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    
+    while True:
+        # This loop is needed even if the output shall not be redirected to stdout for the following reason:
+        # Popen spawns a background process and continues execution here.
+        # That means, without the while loop, we would e.g. execute "git checkout master" right after the download has started, which would crash cookiecutter.
+        output = process.stdout.readline().strip()
+        return_code = process.poll()
+        if output and redirect_output:
+            print(output)
+        if return_code is not None:
+            break
 
 def git_init():
-    run('git', 'init')
+    run(f"git init")
 
 def git_first_commit():
-    run('git', 'add', '.')
-    run('git', 'commit', '-m', 'Create project')
+    run(f"git add .")
+    run(f"git commit -m 'Create project'")
 
 def git_clone_submodules():
     for name, url, commit in SUBMODULE_SPECIFICATIONS:
         path = os.path.join(SUBMODULE_DIRECTORY, name)
-        run('git', 'submodule', 'add', url, path)
-        run('git', 'checkout', commit, cwd=path)
-        run('git', 'add', path)
-        run('git', 'commit', '-m', 'Add {} submodule at {}'.format(name, commit))
+        run(f"git submodule add {url} {path}", redirect_output=True)
+        run(f"git checkout {commit}", cwd=path)
+        run(f"git add {path}")
+        run(f"git commit -m 'Add {name} at {commit}'")
 
 def remove_files(list_of_files):
     for file_name in list_of_files:
@@ -42,8 +53,8 @@ def remove_files(list_of_files):
 def get_available_licenses():
     """Looks for all files named LICENSE.XXX and creates list of available licenses
     """
-    content = pathlib.Path().glob("*")
-    lics_vendor = [x.name for x in content if "LICENSE" in x.name]
+    folder_content = pathlib.Path().glob("*")
+    lics_vendor = [file.name for file in folder_content if file.name.startswith("LICENSE")]
     lics = [lic.lstrip('LICENSE.') for lic in lics_vendor]
     return lics
 
