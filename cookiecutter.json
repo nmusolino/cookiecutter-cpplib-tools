@@ -7,6 +7,6 @@
     "cpp_namespace": "{{ cookiecutter.library_name[0:3] }}",
     "project_short_description": "My sample project containing tests and santitizers.",
     "version": "0.1.0",
-    "license": ["GNU General Public License v3", "BSD license", "MIT license"],
+    "license": ["GNU General Public License v3", "BSD license", "MIT license", "Apache Software License 2.0", "Not open source"],
     "use_boost": ["yes", "no"]
 }

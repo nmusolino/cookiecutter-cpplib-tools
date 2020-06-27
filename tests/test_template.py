@@ -64,9 +64,12 @@ def test_template(cookiecutter_renderer):
 def test_license_choices(license, cookiecutter_renderer):
     project_path = cookiecutter_renderer(license=license)
     license_path = project_path / 'LICENSE'
-    with open(license_path) as license_file:
-        line_count = count(license_file)
-    assert line_count >= 5, "Expected non-empty LICENSE file: {}".format(license_path)
+    if license == "Not open source":
+        assert pathlib.Path(license_path).exists() == False
+    else:
+        with open(license_path) as license_file:
+            line_count = count(license_file)
+        assert line_count >= 5, "Expected non-empty LICENSE file: {}".format(license_path)
 
 
 @pytest.mark.skipif(not has_build_tools(), reason='Does not have cmake and make')
