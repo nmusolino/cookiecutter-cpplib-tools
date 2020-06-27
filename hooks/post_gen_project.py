@@ -18,10 +18,10 @@ def run(*args, cwd=None):
     logger.info('Running command:  %s%s', command_str, cwd_str)
     subprocess.run(args, check=True, cwd=cwd, capture_output=True)
 
-def init():
+def git_init():
     run('git', 'init')
 
-def clone_submodules():
+def git_clone_submodules():
     for name, url, commit in SUBMODULE_SPECIFICATIONS:
         path = os.path.join(SUBMODULE_DIRECTORY, name)
         run('git', 'submodule', 'add', url, path)
@@ -29,11 +29,14 @@ def clone_submodules():
         run('git', 'add', path)
         run('git', 'commit', '-m', 'Add {} submodule at {}'.format(name, commit))
 
+def run_git_commands():
+    git_init()
+    git_clone_submodules()
+
 if __name__ == '__main__':
     log_level = getattr(logging, os.getenv('COOKIECUTTER_LOG_LEVEL', 'WARNING'))
     # The cookiecutter framework copies the hook before running it, so that %(filename)s
     # has a value like 'tmpf9qrjfmo.py'.  To provide an informative message, the actual
     # script name is hardcoded.
     logging.basicConfig(format='%(levelname)s (post_gen_project.py:%(lineno)d): %(message)s', level=log_level)
-    init()
-    clone_submodules()
+    run_git_commands()
