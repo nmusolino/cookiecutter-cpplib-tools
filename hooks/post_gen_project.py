@@ -21,6 +21,10 @@ def run(*args, cwd=None):
 def git_init():
     run('git', 'init')
 
+def git_first_commit():
+    run('git', 'add', '.')
+    run('git', 'commit', '-m', 'Create project')
+
 def git_clone_submodules():
     for name, url, commit in SUBMODULE_SPECIFICATIONS:
         path = os.path.join(SUBMODULE_DIRECTORY, name)
@@ -32,6 +36,7 @@ def git_clone_submodules():
 def run_git_commands():
     git_init()
     git_clone_submodules()
+    git_first_commit()
 
 if __name__ == '__main__':
     log_level = getattr(logging, os.getenv('COOKIECUTTER_LOG_LEVEL', 'WARNING'))
