@@ -62,7 +62,7 @@ def test_template(cookiecutter_renderer):
 
 @parameterize_by_template_parameter('license')
 def test_license_choices(license, cookiecutter_renderer):
-    project_path = cookiecutter_renderer(license=license)
+    project_path = cookiecutter_renderer(license=license, unit_test_framework="None")
     license_path = project_path / 'LICENSE'
     if license == "Not open source":
         assert pathlib.Path(license_path).exists() == False

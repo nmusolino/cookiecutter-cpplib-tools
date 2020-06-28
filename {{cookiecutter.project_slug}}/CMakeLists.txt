@@ -8,9 +8,11 @@ project({{cookiecutter.project_slug}}
 set(CMAKE_CXX_STANDARD 17)
 
 
+{%- if cookiecutter.unit_test_framework == "Catch2" -%}
 ## EXTERNAL LIBRARIES
 # Catch2 unit testing library.
 add_subdirectory(external/Catch2)
+{% endif %}
 
 # Sanitizers-CMake package. Enable with '-DSANITIZE_UNDEFINED=On' at CMake command line.
 set(CMAKE_MODULE_PATH
@@ -30,8 +32,10 @@ target_include_directories({{cookiecutter.library_name}}
     PUBLIC include
 )
 	       	
-
+	       	
+{%- if cookiecutter.unit_test_framework != "None" -%}
 ## UNIT TEST SUITE
 enable_testing()
 add_subdirectory(tests)
+{% endif %}
 

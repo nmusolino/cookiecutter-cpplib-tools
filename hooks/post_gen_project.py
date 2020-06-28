@@ -3,15 +3,11 @@ import os
 import shlex
 import subprocess
 import pathlib
+import shutil
 
 logger = logging.getLogger(__name__)
 
 SUBMODULE_DIRECTORY = 'external'
-# List of desired submodules, as (name, URL, commit) tuples.
-SUBMODULE_SPECIFICATIONS = [
-    ('Catch2', 'https://github.com/catchorg/Catch2.git', 'tags/v2.9.1'),
-    ('sanitizers-cmake', 'https://github.com/arsenm/sanitizers-cmake.git', 'master'),
-]
 
 def run(command, cwd=None, redirect_output=False):
     cmd_list = shlex.split(command)
@@ -37,13 +33,12 @@ def git_first_commit():
     run(f"git add .")
     run(f"git commit -m 'Create project'")
 
-def git_clone_submodules():
-    for name, url, commit in SUBMODULE_SPECIFICATIONS:
-        path = os.path.join(SUBMODULE_DIRECTORY, name)
-        run(f"git submodule add {url} {path}", redirect_output=True)
-        run(f"git checkout {commit}", cwd=path)
-        run(f"git add {path}")
-        run(f"git commit -m 'Add {name} at {commit}'")
+def git_clone_submodule(name, url, commit):
+    path = os.path.join(SUBMODULE_DIRECTORY, name)
+    run(f"git submodule add {url} {path}", redirect_output=True)
+    run(f"git checkout {commit}", cwd=path)
+    run(f"git add {path}")
+    run(f"git commit -m 'Add {name} at {commit}'")
 
 def remove_files(list_of_files):
     for file_name in list_of_files:
@@ -89,9 +84,17 @@ def set_license():
     else:
         remove_open_source_files()
 
+def git_add_Catch2():
+    git_clone_submodule('Catch2', 'https://github.com/catchorg/Catch2.git', 'tags/v2.9.1')
+
+def git_add_sanitizers_cmake():
+    git_clone_submodule('sanitizers-cmake', 'https://github.com/arsenm/sanitizers-cmake.git', 'master')
+
 def run_git_commands():
     git_init()
-    git_clone_submodules()
+    if "{{cookiecutter.unit_test_framework}}" == "Catch2":
+        git_add_Catch2()
+    git_add_sanitizers_cmake()
     git_first_commit()
 
 if __name__ == '__main__':
@@ -101,4 +104,6 @@ if __name__ == '__main__':
     # script name is hardcoded.
     logging.basicConfig(format='%(levelname)s (post_gen_project.py:%(lineno)d): %(message)s', level=log_level)
     set_license()
+    if "{{cookiecutter.unit_test_framework}}" == "None":
+        shutil.rmtree("tests")
     run_git_commands()
