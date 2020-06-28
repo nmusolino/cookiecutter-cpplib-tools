@@ -17,13 +17,19 @@ $ cookiecutter https://github.com/nmusolino/cookiecutter-cpplib-tools
 You will be prompted to enter an author name, a project name, and other
 template parameters.  The main parameters are listed in the table below.
 
-| Template parameter | Usage                                                                     |
-|--------------------|---------------------------------------------------------------------------|
-| full_name          | Author name.  Used in copyright notices and README file.                  |
-| project_name       | Name of project.  Used in documentation.                                  |
-| project_slug       | Short name of project, used in filenames.  Should not include whitespace. |
-| library_name       | Used in C++ library name, which will be `lib<library_name>`.              |
-| cpp_namespace      | Namepsace used in C++ files:  `namespace <cpp_namespace> { ... }`         |
+| Template parameter        | Usage                                                                         |
+|---------------------------|-------------------------------------------------------------------------------|
+| full_name                 | Author name.  Used in copyright notices and README file.                      |
+| email                     | Email of the author. Not used anywhere yet.                                   |
+| project_name              | Name of project.  Used in documentation.                                      |
+| project_slug              | Short name of project, used in filenames.  Should not include whitespace.     |
+| library_name              | Used in C++ library name, which will be `lib<library_name>`.                  |
+| cpp_namespace             | Namespace used in C++ files:  `namespace <cpp_namespace> { ... }`             |
+| project_short_description | Description of project. Used in LICENSE                                       |
+| version                   | Semantic versioning number of the project at creation. Not used anywhere yet. |
+| license                   | License under which the project shall be published.                           |
+| unit_test_framework       | Unit test framework that shall be used in the project.                        |
+| use_boost                 | Choice whether boost library shall be used in the unit tests.                 |
 
 ## Building the C++ project
 
