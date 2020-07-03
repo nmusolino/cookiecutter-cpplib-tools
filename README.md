@@ -5,7 +5,7 @@ template for creating a C++ library project, with tooling.
 
 The main features of the C++ project are:
 * CMake build system
-* Google Test for C++ unit tests
+* Catch2 for C++ unit tests
 
 ## Creating a C++ library from the template
 
@@ -58,4 +58,14 @@ $ pipenv run pytest    # Run tests of the template
 ## License
 
 This project is licensed under the GNU General Public License, version 3.  See the [LICENSE](LICENSE) file for details.
+
+
+## Acknowledgements:
+
+This cookiecutter incorporates ideas and code snippets from the following projects:
+ - [cc-cpp-dll]https://github.com/numengo/cc-cpp-dll
+ - [cookiecutter-pypackage]https://github.com/audreyr/cookiecutter-pypackage
+
+
+
 
