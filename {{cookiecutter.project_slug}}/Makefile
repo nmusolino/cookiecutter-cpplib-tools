@@ -33,7 +33,7 @@ $(BUILD_ROOT)/$(BUILD_TYPE)-%/tests/{{cookiecutter.library_name}}_tests : $(BUIL
 #- test             Run C++ unit test suite
 TEST_EXECUTABLE = $(BUILD_ROOT)/$(BUILD_TYPE)-nosan/tests/{{cookiecutter.library_name}}_tests
 
-.PHONY: {{cookiecutter.library_name}}_tests test test_asan test_ubsan test_msan test_sanitizers
+.PHONY: {{cookiecutter.library_name}}_tests test test_asan test_ubsan test_msan test_sanitizers docs
 
 {{cookiecutter.library_name}}_tests: $(TEST_EXECUTABLE)
 
@@ -65,6 +65,12 @@ test_ubsan: test_ubsan_executable
 
 #- test_sanitizers  Run test suite with all sanitizers (lengthy)
 test_sanitizers: test test_asan test_ubsan test_msan
+
+
+docs: ## generate doxygen HTML documentation, including API docs
+	rm -rf docs/html
+	rm -rf docs/latex
+	doxygen Doxyfile
 
 # Utility targets
 #- all              Equivalent to 'test'
