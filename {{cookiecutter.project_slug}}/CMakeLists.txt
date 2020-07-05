@@ -8,7 +8,7 @@ project({{cookiecutter.project_slug}}
 set(CMAKE_CXX_STANDARD 17)
 
 
-{%- if cookiecutter.unit_test_framework == "Catch2" -%}
+{% if cookiecutter.unit_test_framework == "Catch2" %}
 ## EXTERNAL LIBRARIES
 # Catch2 unit testing library.
 add_subdirectory(external/Catch2)
@@ -33,11 +33,13 @@ target_include_directories({{cookiecutter.library_name}}
 )
 	       	
 	       	
-{%- if cookiecutter.unit_test_framework != "None" -%}
+{% if cookiecutter.unit_test_framework != "None" %}
 ## UNIT TEST SUITE
 enable_testing()
 add_subdirectory(tests)
 {% endif %}
 
 
+{% if cookiecutter.documentation_generator == "doxygen" %}
 add_subdirectory("docs")
+{% endif %}
