@@ -10,5 +10,6 @@
     "version": "0.1.0",
     "license": ["GNU General Public License v3", "BSD license", "MIT license", "Apache Software License 2.0", "Not open source"],
     "unit_test_framework": ["Catch2", "None"],
-    "use_boost": ["yes", "no"]
+    "use_boost": ["yes", "no"],
+    "use_sanitizers_cmake": ["yes", "no"]
 }

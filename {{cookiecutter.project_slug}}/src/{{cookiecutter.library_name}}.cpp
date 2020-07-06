@@ -22,18 +22,18 @@
 
 {% if cookiecutter.documentation_generator == "doxygen" %}
 /*! @brief Some brief bla about {{cookiecutter.cpp_namespace}}.
- * 	@details
+ *  @details
  *  Some long bla about {{cookiecutter.cpp_namespace}}.
  */
 {%- endif %}
 namespace {{cookiecutter.cpp_namespace}} {
     {% if cookiecutter.documentation_generator == "doxygen" %}
-    /*!	@brief Some brief bla about message().
+    /*! @brief Some brief bla about message().
      *  @details
      *  Some long bla about message().
      *
      *  @param recipient The thing or person that shall be greeted.
-     * 	@return message
+     *  @return message
      */
 	{%- endif %}
     std::string message(const std::string& recipient)

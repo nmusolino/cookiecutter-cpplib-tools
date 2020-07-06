@@ -115,7 +115,9 @@ def run_git_commands():
     git_init()
     if "{{cookiecutter.unit_test_framework}}" == "Catch2":
         git_add_Catch2()
-    git_add_sanitizers_cmake()
+        
+    if "{{cookiecutter.use_sanitizers_cmake}}" == "yes":
+        git_add_sanitizers_cmake()
     git_first_commit()
 
 

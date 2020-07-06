@@ -25,11 +25,13 @@ template parameters.  The main parameters are listed in the table below.
 | project_slug              | Short name of project, used in filenames.  Should not include whitespace.     |
 | library_name              | Used in C++ library name, which will be `lib<library_name>`.                  |
 | cpp_namespace             | Namespace used in C++ files:  `namespace <cpp_namespace> { ... }`             |
-| project_short_description | Description of project. Used in LICENSE                                       |
+| documentation_generator   | Which generator to use for generating documentation.                          |
+| project_short_description | Description of project.                                                       |
 | version                   | Semantic versioning number of the project at creation. Not used anywhere yet. |
 | license                   | License under which the project shall be published.                           |
 | unit_test_framework       | Unit test framework that shall be used in the project.                        |
 | use_boost                 | Choice whether boost library shall be used in the unit tests.                 |
+| use_sanitizers_cmake      | Whether to include a CMake module to enable sanitizers for binary targets.    |
 
 ## Building the C++ project
 
