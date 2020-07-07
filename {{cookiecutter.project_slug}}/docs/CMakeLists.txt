@@ -5,6 +5,7 @@ find_package( Doxygen )
 if ( DOXYGEN_FOUND )
 
     set( DOXYGEN_OUTPUT_DIRECTORY doxygen )
+    set( DOXYGEN_PROJECT_NAME "{{cookiecutter.project_name}}" )
     set( DOXYGEN_COLLABORATION_GRAPH YES )
     set( DOXYGEN_EXTRACT_ALL YES )
     set( DOXYGEN_CLASS_DIAGRAMS YES )

@@ -131,5 +131,5 @@ if __name__ == '__main__':
     if "{{cookiecutter.unit_test_framework}}" == "None":
         shutil.rmtree("tests")
     if "{{cookiecutter.documentation_generator}}" == "None":
-        os.remove("docs/Doxyfile.in")
+        os.remove("docs/CMakeLists.txt")
     run_git_commands()
