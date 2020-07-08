@@ -1,10 +1,12 @@
-# ref.: https://vicrucann.github.io/tutorials/quick-cmake-doxygen/
+# references:
+#   * https://vicrucann.github.io/tutorials/quick-cmake-doxygen/
+#   * https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/
 
 find_package( Doxygen )
 
 if ( DOXYGEN_FOUND )
 
-    set( DOXYGEN_OUTPUT_DIRECTORY doxygen )
+    set( DOXYGEN_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doxygen )
     set( DOXYGEN_PROJECT_NAME "{{cookiecutter.project_name}}" )
     set( DOXYGEN_COLLABORATION_GRAPH YES )
     set( DOXYGEN_EXTRACT_ALL YES )
@@ -26,7 +28,8 @@ if ( DOXYGEN_FOUND )
     set( DOXYGEN_DOT_GRAPH_MAX_NODES 100 )
     set( DOXYGEN_MAX_DOT_GRAPH_DEPTH 0 )
     set( DOXYGEN_DOT_TRANSPARENT YES )
-
+    set( DOXYGEN_GENERATE_XML YES )
+    
     doxygen_add_docs(
             docs
             ${PROJECT_SOURCE_DIR}/src ${PROJECT_SOURCE_DIR}/include
@@ -39,3 +42,23 @@ else()
     message( "Doxygen need to be installed to generate the doxygen documentation" )
 
 endif()
+
+
+set(DOXYGEN_INDEX_FILE ${DOXYGEN_OUTPUT_DIR}/xml/index.xml)
+
+
+find_package(Sphinx REQUIRED)
+
+set(SPHINX_SOURCE ${CMAKE_CURRENT_SOURCE_DIR})
+set(SPHINX_BUILD ${CMAKE_CURRENT_BINARY_DIR}/sphinx)
+
+add_custom_target(  Sphinx ALL 
+                    COMMAND ${SPHINX_EXECUTABLE} -b html
+                    # Tell Breathe where to find the Doxygen output
+                    -Dbreathe_projects.{{cookiecutter.project_slug}}=${CMAKE_CURRENT_BINARY_DIR}/doxygen/xml
+                    ${SPHINX_SOURCE} ${SPHINX_BUILD}
+                    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+                    # Other docs files you want to track should go below here (or in some variable)
+                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/index.rst docs
+                    COMMENT "Generating documentation with Sphinx"
+                  )
