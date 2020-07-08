@@ -130,6 +130,15 @@ if __name__ == '__main__':
     set_license()
     if "{{cookiecutter.unit_test_framework}}" == "None":
         shutil.rmtree("tests")
+        
     if "{{cookiecutter.documentation_generator}}" == "None":
-        os.remove("docs/CMakeLists.txt")
+        shutil.rmtree("docs")
+        shutil.rmtree("cmake")
+        
+    if "{{cookiecutter.documentation_generator}}" == "doxygen":
+        shutil.rmtree("cmake")
+        shutil.rmtree("docs/_static")
+        os.remove("docs/conf.py")
+        os.remove("docs/index.rst")
+        
     run_git_commands()

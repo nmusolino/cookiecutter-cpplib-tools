@@ -28,7 +28,9 @@ if ( DOXYGEN_FOUND )
     set( DOXYGEN_DOT_GRAPH_MAX_NODES 100 )
     set( DOXYGEN_MAX_DOT_GRAPH_DEPTH 0 )
     set( DOXYGEN_DOT_TRANSPARENT YES )
+    {%- if cookiecutter.documentation_generator == "sphinx"%}
     set( DOXYGEN_GENERATE_XML YES )
+    {% endif %}
     
     doxygen_add_docs(
             docs
@@ -43,9 +45,8 @@ else()
 
 endif()
 
-
+{% if cookiecutter.documentation_generator == "sphinx"%}
 set(DOXYGEN_INDEX_FILE ${DOXYGEN_OUTPUT_DIR}/xml/index.xml)
-
 
 find_package(Sphinx REQUIRED)
 
@@ -62,3 +63,4 @@ add_custom_target(  Sphinx ALL
                     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/index.rst docs
                     COMMENT "Generating documentation with Sphinx"
                   )
+{% endif %}

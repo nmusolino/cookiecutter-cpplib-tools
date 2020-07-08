@@ -20,7 +20,7 @@ Indices and tables
 * :ref:`search`
 
 
-.. doxygennamespace:: my_
+.. doxygennamespace:: {{cookiecutter.cpp_namespace}}
     :members:
 
 .. doxygenfunction:: message

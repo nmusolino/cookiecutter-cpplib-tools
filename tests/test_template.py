@@ -62,7 +62,7 @@ def test_template(cookiecutter_renderer):
 
 @parameterize_by_template_parameter('license')
 def test_license_choices(license, cookiecutter_renderer):
-    project_path = cookiecutter_renderer(license=license, unit_test_framework="None")
+    project_path = cookiecutter_renderer(license=license, unit_test_framework="None", use_sanitizers_cmake="no")
     license_path = project_path / 'LICENSE'
     if license == "Not open source":
         assert pathlib.Path(license_path).exists() == False
@@ -75,14 +75,13 @@ def test_license_choices(license, cookiecutter_renderer):
 @pytest.mark.skipif(not has_build_tools(), reason='Does not have cmake and make')
 @parameterize_by_template_parameter('use_boost')
 def test_build(cookiecutter_renderer, use_boost):
-    project_path = cookiecutter_renderer(use_boost=use_boost)
+    project_path = cookiecutter_renderer(use_boost=use_boost, unit_test_framework="None", use_sanitizers_cmake="no")
     build_dir = (project_path / "build")
-    build_dir.mkdir()
     for command in ['cmake ..', 'cmake --build .', 'ctest']:
         subprocess.run(command.split(), cwd=build_dir, check=True)
 
 @pytest.mark.skipif(not has_build_tools(), reason='Does not have cmake and make')
 @parameterize_by_template_parameter('use_boost')
 def test_build_with_makefile(cookiecutter_renderer, use_boost):
-    project_path = cookiecutter_renderer(use_boost=use_boost)
+    project_path = cookiecutter_renderer(use_boost=use_boost, unit_test_framework="Catch2", use_sanitizers_cmake="no")
     subprocess.run(['make', 'test'], check=True, cwd=project_path)

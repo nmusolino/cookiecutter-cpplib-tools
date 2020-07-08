@@ -39,7 +39,11 @@ enable_testing()
 add_subdirectory(tests)
 {% endif %}
 
-{% if cookiecutter.documentation_generator == "doxygen" -%}
+{% if cookiecutter.documentation_generator == "sphinx" -%}
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+{% endif %}
+
+
+{% if cookiecutter.documentation_generator != "None" -%}
 add_subdirectory("docs")
 {% endif %}
