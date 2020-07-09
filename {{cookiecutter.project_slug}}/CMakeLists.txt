@@ -43,6 +43,7 @@ add_subdirectory(tests)
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 {% endif %}
 
+add_subdirectory("demos")
 
 {% if cookiecutter.documentation_generator != "None" -%}
 add_subdirectory("docs")

@@ -32,6 +32,11 @@ $ cmake -S . -B build
 $ cmake --build build
 ```
 
+Running demos
+~~~~~~~~~~~~~
+
+You can find demonstrations on how to use the library in the demos folder.
+
 
 Installing
 ~~~~~~~~~~
