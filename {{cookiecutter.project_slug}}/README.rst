@@ -96,6 +96,12 @@ Versioning
 ----------
 
 We use `SemVer <http://semver.org/>`__ for versioning.
+To increment the version number use bump2version
+```
+$ bump2version major
+```
+This increments the version from, e.g. 0.1.0 to 1.0.0
+See .bumpversion.cfg for details on what happens.
 
 
 Authors

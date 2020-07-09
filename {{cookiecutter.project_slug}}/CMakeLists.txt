@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 project({{cookiecutter.project_slug}}
-    VERSION {{cookiecutter.version}}
+    VERSION {{cookiecutter.version}} # bump this
     DESCRIPTION "{{cookiecutter.project_short_description}}"
 )
 

@@ -7,6 +7,7 @@ The main features of the C++ project are:
 * CMake build system
 * Catch2 for C++ unit tests
 * Document generation with doxygen or sphinx
+* bump2version for incrementing version number in all relevant files
 
 ## Creating a C++ library from the template
 
