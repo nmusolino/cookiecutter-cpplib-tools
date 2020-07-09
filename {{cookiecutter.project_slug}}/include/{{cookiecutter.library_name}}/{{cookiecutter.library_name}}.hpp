@@ -1,4 +1,4 @@
-{%- if cookiecutter.documentation_generator == "doxygen" -%}
+{%- if cookiecutter.documentation_generator != "None" -%}
 /**
  **************************************************
  * @file     {{cookiecutter.library_name}}.cpp
@@ -15,9 +15,8 @@
 
 #include <string>
 
-namespace {{cookiecutter.cpp_namespace}}
-{
+namespace {{cookiecutter.cpp_namespace}} {
 
-    std::string message(const std::string& recipient);
+std::string message(const std::string& recipient);
 
 } /* end namespace '{{cookiecutter.cpp_namespace}}' */

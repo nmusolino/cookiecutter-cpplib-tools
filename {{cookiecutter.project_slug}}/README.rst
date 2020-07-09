@@ -92,6 +92,16 @@ Contributing
 Please read [CONTRIBUTING.rst] for details on our code of conduct, and the process for submitting pull requests to us.
 
 
+Code Style
+----------
+
+This project uses clang-format to automatically format the code and keep a consistent code style.
+To use it, use the following command:
+```
+$ clang-format -i -style=file src/*.cpp include/*/*.hpp
+```
+
+
 Versioning
 ----------
 

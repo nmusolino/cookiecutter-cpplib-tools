@@ -8,6 +8,7 @@ The main features of the C++ project are:
 * Catch2 for C++ unit tests
 * Document generation with doxygen or sphinx
 * bump2version for incrementing version number in all relevant files
+* clang-format for automatically formatting your code
 
 ## Creating a C++ library from the template
 
