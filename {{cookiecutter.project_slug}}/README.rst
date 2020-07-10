@@ -27,10 +27,11 @@ What things you need to install the software and how to install them.
 Building the C++ project
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-```
-$ cmake -S . -B build
-$ cmake --build build
-```
+.. code-block:: bash
+
+    $ cmake -S . -B build
+    $ cmake --build build
+
 
 Running demos
 ~~~~~~~~~~~~~
@@ -58,13 +59,14 @@ And repeat
 End with an example of getting some data out of the system or using it for a little demo
 
 {%- if cookiecutter.unit_test_framework != "None" -%}
+
 Running the tests
 -----------------
 
-```
-$ cd build
-$ ctest
-```
+.. code-block:: bash
+
+    $ cd build
+    $ ctest
 
 Break down into end to end tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -83,6 +85,7 @@ Explain what these tests test and why
 ::
 
     Give an example
+    
 {% endif %}
     
 Deployment
@@ -94,7 +97,7 @@ Add additional notes about how to deploy this on a live system
 Contributing
 ------------
 
-Please read [CONTRIBUTING.rst] for details on our code of conduct, and the process for submitting pull requests to us.
+Please read `CONTRIBUTING <CONTRIBUTING.rst>`__ for details on our code of conduct, and the process for submitting pull requests to us.
 
 
 Code Style
@@ -102,9 +105,10 @@ Code Style
 
 This project uses clang-format to automatically format the code and keep a consistent code style.
 To use it, use the following command:
-```
-$ clang-format -i -style=file src/*.cpp include/*/*.hpp
-```
+
+.. code-block:: bash
+
+    $ clang-format -i -style=file src/*.cpp include/*/*.hpp
 
 
 Versioning
@@ -112,9 +116,11 @@ Versioning
 
 We use `SemVer <http://semver.org/>`__ for versioning.
 To increment the version number use bump2version
-```
-$ bump2version major
-```
+
+.. code-block:: bash
+
+    $ bump2version major
+
 This increments the version from, e.g. 0.1.0 to 1.0.0
 See .bumpversion.cfg for details on what happens.
 
