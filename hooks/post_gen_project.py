@@ -73,12 +73,6 @@ def remove_open_source_files():
     lics = get_available_licenses()
     license_files = [f"LICENSE.{lic}" for lic in lics]
     remove_files(license_files)
-    remove_gplv3_files()
-
-
-def remove_gplv3_files():
-    gpl_files = ["CONTRIBUTORS.txt", "COPYING"]
-    remove_files(gpl_files)
 
 
 def remove_all_licenses_except(requested_lic):
@@ -86,10 +80,6 @@ def remove_all_licenses_except(requested_lic):
     unneeded_lics.remove(requested_lic)
     unneeded_license_files = [f"LICENSE.{lic}" for lic in unneeded_lics]
     remove_files(unneeded_license_files)
-            
-    if "GNU General Public License v3" in unneeded_lics:
-        remove_gplv3_files()
-    
     os.rename(f"LICENSE.{requested_lic}", "LICENSE")
 
 
