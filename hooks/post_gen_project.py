@@ -94,7 +94,7 @@ def set_license():
 
 
 def git_add_Catch2():
-    git_clone_submodule('Catch2', 'https://github.com/catchorg/Catch2.git', 'tags/v2.9.1')
+    git_clone_submodule('Catch2', 'https://github.com/catchorg/Catch2.git', 'master')
 
 
 def git_add_sanitizers_cmake():
