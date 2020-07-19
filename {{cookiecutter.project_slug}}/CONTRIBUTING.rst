@@ -1,3 +1,4 @@
+.. _CONTRIBUTING:
 .. highlight:: shell
 
 ============
@@ -90,7 +91,7 @@ Ready to contribute? Here's how to set up `{{ cookiecutter.project_slug }}` for 
     $ git commit -m "Your detailed description of your changes."
     $ git push origin name-of-your-bugfix-or-feature
 
-7.  Add your name to the list of `AUTHORS <AUTHORS.rst>__`.
+7.  Add your name to the list of :ref:`AUTHORS <AUTHORS>`.
     
     This step is optional but you are very welcome to add your mark here.
     
@@ -105,7 +106,7 @@ Before you submit a pull request, check that it meets these guidelines:
 1.  The pull request should include tests.
 
 2.  If the pull request adds functionality, the docs should be updated.
-    Put your new functionality into a function with doxygen compliant comments, and add the feature to the list in README.rst.
+    Put your new functionality into a function with doxygen compliant comments, and add the feature to the list in :ref:`README <README>`.
 
 
 Deploying

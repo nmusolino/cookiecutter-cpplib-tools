@@ -1,11 +1,22 @@
+.. _README:
+
 {{cookiecutter.library_name}}
 ===============================================
 
 
 Overview
-========
+--------
 
 {{ cookiecutter.project_short_description }}
+
+
+Features
+--------
+
+The main features of {{cookiecutter.library_name}} are:
+ * A
+ * B
+ * C
 
 
 Getting Started
@@ -58,7 +69,7 @@ And repeat
 
 End with an example of getting some data out of the system or using it for a little demo
 
-{%- if cookiecutter.unit_test_framework != "None" -%}
+{% if cookiecutter.unit_test_framework != "None" -%}
 
 Running the tests
 -----------------
@@ -97,7 +108,7 @@ Add additional notes about how to deploy this on a live system
 Contributing
 ------------
 
-Please read `CONTRIBUTING <CONTRIBUTING.rst>`__ for details on our code of conduct, and the process for submitting pull requests to us.
+Please read :ref:`CONTRIBUTING <CONTRIBUTING>` for details on our code of conduct, and the process for submitting pull requests to us.
 
 
 Code Style
@@ -128,13 +139,13 @@ See .bumpversion.cfg for details on what happens.
 Authors
 -------
 
-See the list of `AUTHORS <AUTHORS.rst>`__ who helped creating {{cookiecutter.library_name}}.
+See the list of :ref:`AUTHORS <AUTHORS>` to see who helped creating {{cookiecutter.library_name}}.
 
 
 License
 -------
 
-This project is licensed under the {{cookiecutter.license}} - see the `LICENSE <LICENSE>`__ file for details
+This project is licensed under the {{cookiecutter.license}} - see the :ref:`LICENSE <LICENSE>` file for details
 
 
 Credits
