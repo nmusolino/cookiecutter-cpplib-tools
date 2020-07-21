@@ -85,7 +85,7 @@ include(GNUInstallDirs)
 install(DIRECTORY ${DOXYGEN_OUTPUT_DIRECTORY}
         DESTINATION ${CMAKE_INSTALL_DOCDIR}
        )
-{%- else if cookiecutter.documentation_generator == "sphinx" %}
+{%- elif cookiecutter.documentation_generator == "sphinx" %}
 install(DIRECTORY ${SPHINX_BUILD}
         DESTINATION ${CMAKE_INSTALL_DOCDIR}
        )
