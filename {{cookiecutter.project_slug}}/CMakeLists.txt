@@ -48,3 +48,12 @@ add_subdirectory("demos")
 {% if cookiecutter.documentation_generator != "None" -%}
 add_subdirectory("docs")
 {% endif %}
+
+
+install(TARGETS {{cookiecutter.library_name}}
+        DESTINATION lib
+       )
+       
+install(DIRECTORY include/{{cookiecutter.library_name}}
+        DESTINATION include
+       )
