@@ -30,12 +30,15 @@ if ( DOXYGEN_FOUND )
     set( DOXYGEN_DOT_TRANSPARENT YES )
     {%- if cookiecutter.documentation_generator == "sphinx"%}
     set( DOXYGEN_GENERATE_XML YES )
-    {% endif %}
+    {%- endif %}
     
+    file(GLOB_RECURSE FILES_WITH_DOXYGEN_COMMENTS ${PROJECT_SOURCE_DIR}/include/*/*.hpp ${PROJECT_SOURCE_DIR}/src/*.cpp)
+
     doxygen_add_docs(
             docs
-            ${PROJECT_SOURCE_DIR}/src ${PROJECT_SOURCE_DIR}/include
+            ${FILES_WITH_DOXYGEN_COMMENTS}
             ALL
+            USE_STAMP_FILE
             COMMENT "Generating docs"
         )
 
@@ -46,21 +49,32 @@ else()
 endif()
 
 {% if cookiecutter.documentation_generator == "sphinx"%}
-set(DOXYGEN_INDEX_FILE ${DOXYGEN_OUTPUT_DIR}/xml/index.xml)
+set(DOXYGEN_INDEX_FILE ${DOXYGEN_OUTPUT_DIRECTORY}/xml/index.xml)
 
 find_package(Sphinx REQUIRED)
 
 set(SPHINX_SOURCE ${CMAKE_CURRENT_SOURCE_DIR})
 set(SPHINX_BUILD ${CMAKE_CURRENT_BINARY_DIR}/sphinx)
 
-add_custom_target(  Sphinx ALL 
-                    COMMAND ${SPHINX_EXECUTABLE} -b html
+set(SPHINX_INDEX_FILE ${SPHINX_BUILD}/index.html)
+
+# Only regenerate Sphinx when:
+# - Our doc files have been updated
+# - Doxygen has rerun
+# - The Sphinx config has been updated
+add_custom_command( OUTPUT ${SPHINX_INDEX_FILE}
+                    COMMAND 
+                    ${SPHINX_EXECUTABLE} -b html
                     # Tell Breathe where to find the Doxygen output
-                    -Dbreathe_projects.{{cookiecutter.project_slug}}=${CMAKE_CURRENT_BINARY_DIR}/doxygen/xml
+                    -Dbreathe_projects.dfuller=${CMAKE_CURRENT_BINARY_DIR}/doxygen/xml
                     ${SPHINX_SOURCE} ${SPHINX_BUILD}
                     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
                     # Other docs files you want to track should go below here (or in some variable)
-                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/index.rst docs
+                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/index.rst docs ${DOXYGEN_INDEX_FILE}
+                    MAIN_DEPENDENCY ${SPHINX_SOURCE}/conf.py
                     COMMENT "Generating documentation with Sphinx"
                   )
+
+# Nice named target so we can run the job easily
+add_custom_target(Sphinx ALL DEPENDS ${SPHINX_INDEX_FILE} docs)
 {% endif %}
