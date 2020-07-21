@@ -66,7 +66,7 @@ add_custom_command( OUTPUT ${SPHINX_INDEX_FILE}
                     COMMAND 
                     ${SPHINX_EXECUTABLE} -b html
                     # Tell Breathe where to find the Doxygen output
-                    -Dbreathe_projects.dfuller=${CMAKE_CURRENT_BINARY_DIR}/doxygen/xml
+                    -Dbreathe_projects.{{cookiecutter.project_slug}}=${CMAKE_CURRENT_BINARY_DIR}/doxygen/xml
                     ${SPHINX_SOURCE} ${SPHINX_BUILD}
                     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
                     # Other docs files you want to track should go below here (or in some variable)
