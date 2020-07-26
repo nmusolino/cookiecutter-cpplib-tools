@@ -35,9 +35,8 @@ if ( DOXYGEN_FOUND )
     file(GLOB_RECURSE FILES_WITH_DOXYGEN_COMMENTS ${PROJECT_SOURCE_DIR}/include/*/*.hpp ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
     doxygen_add_docs(
-            docs
+            doxygen
             ${FILES_WITH_DOXYGEN_COMMENTS}
-            ALL
             USE_STAMP_FILE
             COMMENT "Generating docs"
         )
@@ -70,13 +69,13 @@ add_custom_command( OUTPUT ${SPHINX_INDEX_FILE}
                     ${SPHINX_SOURCE} ${SPHINX_BUILD}
                     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
                     # Other docs files you want to track should go below here (or in some variable)
-                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/index.rst docs ${DOXYGEN_INDEX_FILE}
+                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/index.rst doxygen ${DOXYGEN_INDEX_FILE}
                     MAIN_DEPENDENCY ${SPHINX_SOURCE}/conf.py
                     COMMENT "Generating documentation with Sphinx"
                   )
 
 # Nice named target so we can run the job easily
-add_custom_target(Sphinx ALL DEPENDS ${SPHINX_INDEX_FILE} docs)
+add_custom_target(sphinx ALL DEPENDS ${SPHINX_INDEX_FILE})
 {% endif %}
 
 include(GNUInstallDirs)
