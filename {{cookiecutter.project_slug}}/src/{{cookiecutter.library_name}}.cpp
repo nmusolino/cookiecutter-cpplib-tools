@@ -15,7 +15,7 @@
 
 namespace {{cookiecutter.cpp_namespace}} {
 
-std::string message(const std::string& recipient)
+std::string message(const std::string &recipient)
 {
     const std::string greeting { "Hello" };
     return recipient.empty() ? greeting : greeting + ", " + recipient;

@@ -37,6 +37,6 @@ namespace {{cookiecutter.cpp_namespace}} {
  *  @return message
  */
 {%- endif %}
-std::string message(const std::string& recipient);
+std::string message(const std::string &recipient);
 
 } /* end namespace '{{cookiecutter.cpp_namespace}}' */
