@@ -1,0 +1,17 @@
+Create README.md in project_slug: How to configure, see CONTRIBUTING, LICENSE, credits to this template
+Add build folder to project_slug and its .gitignore
+make sanitizers optional
+Add doc-engines: doxygen, sphinx
+Add bump2version hook
+Add clang-formatter
+Add demos (ref.: https://cmake.org/examples/; https://www.bogotobogo.com/cplusplus/make.php)
+Add CONTRIBUTING.rst
+
+Add features of other cookiecutters
+
+Add copyright notice and license notice to each file automatically with python script
+Add changelog-generator?
+Add SCons
+Make multiple build systems in parallel possible?
+Keep README.md in cc up to date
+Add CI hook? 

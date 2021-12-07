@@ -5,8 +5,11 @@
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
     "library_name": "{{ cookiecutter.project_slug }}",
     "cpp_namespace": "{{ cookiecutter.library_name[0:3] }}",
+    "documentation_generator": ["None", "doxygen", "sphinx"],
     "project_short_description": "My sample project containing tests and santitizers.",
     "version": "0.1.0",
-    "license": ["GNU General Public License v3", "BSD license", "MIT license"],
-    "use_boost": ["yes", "no"]
+    "license": ["GNU General Public License v3", "BSD license", "MIT license", "Apache Software License 2.0", "Not open source"],
+    "unit_test_framework": ["Catch2", "None"],
+    "use_boost": ["yes", "no"],
+    "use_sanitizers_cmake": ["yes", "no"]
 }

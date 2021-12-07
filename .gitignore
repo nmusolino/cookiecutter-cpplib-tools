@@ -1,5 +1,9 @@
 # emacs backup files
 *~
 
-# PyCharm IDE
+# IDE configs
 .idea/
+.project
+.pydevproject
+
+__pycache__
